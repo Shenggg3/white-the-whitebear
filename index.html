@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活動分享助手</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; background-color: #f4f4f9; }
+        .card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; width: 80%; max-width: 400px; }
+        h2 { color: #333; font-size: 1.2rem; }
+        .text-box { background: #eee; padding: 10px; border-radius: 8px; margin: 15px 0; font-size: 0.9rem; color: #555; word-break: break-all; }
+        button { background-color: #007AFF; color: white; border: none; padding: 12px 24px; border-radius: 25px; font-size: 1rem; cursor: pointer; transition: 0.3s; width: 100%; }
+        button:active { transform: scale(0.98); background-color: #0056b3; }
+        .success-msg { color: #28a745; font-size: 0.8rem; margin-top: 10px; display: none; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>點擊下方按鈕複製標籤<br>並前往活動頁面</h2>
+    <div class="text-box" id="copyText">#全球三億下載 #大白熊大量發生中</div>
+    
+    <button onclick="copyAndGo()">一鍵複製並前往</button>
+    <p class="success-msg" id="msg">已複製成功！正在跳轉...</p>
+</div>
+
+<script>
+    function copyAndGo() {
+        const text = document.getElementById('copyText').innerText;
+        const targetUrl = "https://www.facebook.com/reel/1576028460495154"; // <-- 在這裡換成您的目標連結
+
+        // 執行複製功能
+        navigator.clipboard.writeText(text).then(() => {
+            document.getElementById('msg').style.display = 'block';
+            
+            // 延遲 1 秒後跳轉，讓使用者看見成功提示
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 1000);
+        }).catch(err => {
+            alert('複製失敗，請手動複製文字');
+        });
+    }
+</script>
+
+</body>
+</html>
